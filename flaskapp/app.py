@@ -75,7 +75,7 @@ def create_field():
 
         cursor = conn.cursor()
         query = "INSERT INTO fields(id, name, team, location, capacity) VALUES(%s, %s, %s, %s, %s);"
-        info = (_id, _name, _location, _team, _capacity)
+        info = (_id, _name, _team, _location, _capacity)
         print(info)
         cursor.execute(query, info)
         resp = jsonify('Post successfully.')
@@ -84,6 +84,7 @@ def create_field():
     except Exception as e:
         print(e)
     finally:
+        conn.commit()
         cursor.close() 
         conn.close()
 
